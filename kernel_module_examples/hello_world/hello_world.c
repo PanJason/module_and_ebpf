@@ -12,6 +12,7 @@
 // initialization so the kernel will free up the memory this function takes
 // after execution
 static int __init hello_init(void) {
+    // KERN_INFO is a loglevel indicating a general information message
     printk(KERN_INFO "Hello, World! Module loaded.\n");
     return 0;
 }   
