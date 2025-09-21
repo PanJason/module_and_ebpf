@@ -1,0 +1,11 @@
+# Kernel modules
+*.ko
+*.mod.c
+*.mod
+*.o
+*.symvers
+modules.order
+Module.symvers
+
+# eBPF
+*.bpf.o
