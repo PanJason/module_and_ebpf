@@ -2,16 +2,18 @@
 #include <linux/ptrace.h>
 #include <linux/types.h>
 
-#include "bpf_helpers.h"
+#include <bpf/bpf_helpers.h>
 
-struct bpf_map_def SEC("maps") exec_counter = {
-    .type = BPF_MAP_TYPE_HASH,
-    .key_size = sizeof(__u32),
-    .value_size = sizeof(__u64),
-    .max_entries = 1,
-};
+struct {
+	__uint(type, BPF_MAP_TYPE_HASH);
+	__uint(max_entries, 1);
+	__type(key, __u32);
+	__type(value, __u64);
+} exec_counter SEC(".maps");
 
 SEC("tracepoint/syscalls/sys_enter_execve")
+// ctx contains all the event payload
+// helper functions such as BPF_CORE_READ can be used to read fields from ctx
 int count_exec(void *ctx)
 {
     __u32 key = 0;
