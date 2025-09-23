@@ -9,3 +9,7 @@ Module.symvers
 
 # eBPF
 *.bpf.o
+*.skel.h
+
+# vscode
+.vscode/
